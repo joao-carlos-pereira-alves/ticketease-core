@@ -1,12 +1,12 @@
-defmodule QuickStartWeb do
+defmodule ReservaOnlineWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, components, channels, and so on.
 
   This can be used in your application as:
 
-      use QuickStartWeb, :controller
-      use QuickStartWeb, :html
+      use ReservaOnlineWeb, :controller
+      use ReservaOnlineWeb, :html
 
   The definitions below will be executed for every controller,
   component, etc, so keep them short and clean, focused
@@ -39,10 +39,10 @@ defmodule QuickStartWeb do
     quote do
       use Phoenix.Controller,
         formats: [:html, :json],
-        layouts: [html: QuickStartWeb.Layouts]
+        layouts: [html: ReservaOnlineWeb.Layouts]
 
       import Plug.Conn
-      import QuickStartWeb.Gettext
+      import ReservaOnlineWeb.Gettext
 
       unquote(verified_routes())
     end
@@ -51,9 +51,9 @@ defmodule QuickStartWeb do
   def verified_routes do
     quote do
       use Phoenix.VerifiedRoutes,
-        endpoint: QuickStartWeb.Endpoint,
-        router: QuickStartWeb.Router,
-        statics: QuickStartWeb.static_paths()
+        endpoint: ReservaOnlineWeb.Endpoint,
+        router: ReservaOnlineWeb.Router,
+        statics: ReservaOnlineWeb.static_paths()
     end
   end
 

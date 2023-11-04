@@ -1,7 +1,7 @@
-defmodule QuickStartWeb.Plugs.Auth do
+defmodule ReservaOnlineWeb.Plugs.Auth do
   import Plug.Conn
 
-  alias QuickStartWeb.Token
+  alias ReservaOnlineWeb.Token
 
   def init(opts), do: opts
 
@@ -13,7 +13,7 @@ defmodule QuickStartWeb.Plugs.Auth do
       _error ->
         conn
         |> put_status(:unauthorized)
-        |> Phoenix.Controller.put_view(json: QuickStartWeb.ErrorJSON)
+        |> Phoenix.Controller.put_view(json: ReservaOnlineWeb.ErrorJSON)
         |> Phoenix.Controller.render(:error, status: :unauthorized)
         |> halt()
     end

@@ -1,7 +1,7 @@
-defmodule QuickStartWeb.UsersControllerTest do
-  use QuickStartWeb.ConnCase
+defmodule ReservaOnlineWeb.UsersControllerTest do
+  use ReservaOnlineWeb.ConnCase
 
-  alias QuickStart.Users
+  alias ReservaOnline.Users
   alias Users.User
 
   import Mox

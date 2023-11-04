@@ -1,6 +1,6 @@
-defmodule QuickStart.Users.Get do
-  alias QuickStart.Users.User
-  alias QuickStart.Repo
+defmodule ReservaOnline.Users.Get do
+  alias ReservaOnline.Users.User
+  alias ReservaOnline.Repo
 
   def call(id) do
     case Repo.get(User, id) do

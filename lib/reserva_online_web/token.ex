@@ -1,8 +1,8 @@
-defmodule QuickStartWeb.Token do
+defmodule ReservaOnlineWeb.Token do
   alias Phoenix.Token
-  alias QuickStartWeb.Endpoint
+  alias ReservaOnlineWeb.Endpoint
 
-  @sign_salt "quick_start_api"
+  @sign_salt "reserva_online_api"
 
   def sign(user) do
     Token.sign(Endpoint, @sign_salt, %{user_id: user.id})

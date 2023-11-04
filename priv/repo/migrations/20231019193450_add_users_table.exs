@@ -1,4 +1,4 @@
-defmodule QuickStart.Repo.Migrations.AddUsersTable do
+defmodule ReservaOnline.Repo.Migrations.AddUsersTable do
   use Ecto.Migration
 
   def change do

@@ -1,9 +1,9 @@
-defmodule QuickStart.MixProject do
+defmodule ReservaOnline.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :quick_start,
+      app: :reserva_online,
       version: "0.1.0",
       elixir: "~> 1.14",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -18,7 +18,7 @@ defmodule QuickStart.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {QuickStart.Application, []},
+      mod: {ReservaOnline.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end

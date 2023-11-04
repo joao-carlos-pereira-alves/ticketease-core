@@ -1,9 +1,9 @@
-defmodule QuickStart.Users do
-  alias QuickStart.Users.Create
-  alias QuickStart.Users.Delete
-  alias QuickStart.Users.Get
-  alias QuickStart.Users.Update
-  alias QuickStart.Users.Verify
+defmodule ReservaOnline.Users do
+  alias ReservaOnline.Users.Create
+  alias ReservaOnline.Users.Delete
+  alias ReservaOnline.Users.Get
+  alias ReservaOnline.Users.Update
+  alias ReservaOnline.Users.Verify
 
   defdelegate create(params), to: Create, as: :call
   defdelegate delete(id), to: Delete, as: :call

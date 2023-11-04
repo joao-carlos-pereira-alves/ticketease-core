@@ -1,5 +1,5 @@
-defmodule QuickStartWeb.UsersJSON do
-  alias QuickStart.Users.User
+defmodule ReservaOnlineWeb.UsersJSON do
+  alias ReservaOnline.Users.User
 
   def create(%{user: user}) do
     %{

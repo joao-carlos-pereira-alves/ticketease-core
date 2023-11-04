@@ -1,2 +1,2 @@
 ExUnit.start()
-Ecto.Adapters.SQL.Sandbox.mode(QuickStart.Repo, :manual)
+Ecto.Adapters.SQL.Sandbox.mode(ReservaOnline.Repo, :manual)

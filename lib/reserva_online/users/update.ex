@@ -1,6 +1,6 @@
-defmodule QuickStart.Users.Update do
-  alias QuickStart.Users.User
-  alias QuickStart.Repo
+defmodule ReservaOnline.Users.Update do
+  alias ReservaOnline.Users.User
+  alias ReservaOnline.Repo
 
   def call(%{"id" => id} = params) do
     case Repo.get(User, id) do

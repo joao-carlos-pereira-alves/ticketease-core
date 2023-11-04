@@ -5,17 +5,17 @@ import Config
 # The MIX_TEST_PARTITION environment variable can be used
 # to provide built-in test partitioning in CI environment.
 # Run `mix help test` for more information.
-config :quick_start, QuickStart.Repo,
+config :reserva_online, ReservaOnline.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "localhost",
-  database: "quick_start_test#{System.get_env("MIX_TEST_PARTITION")}",
+  database: "reserva_online_test#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :quick_start, QuickStartWeb.Endpoint,
+config :reserva_online, ReservaOnlineWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
   secret_key_base: "gMADgGiq0azLDJOa/irtwmaUqh17XFFaShYO37wJo8Oat971bG88Utp9WcSu6b8g",
   server: false

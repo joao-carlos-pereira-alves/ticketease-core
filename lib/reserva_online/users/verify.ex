@@ -1,5 +1,5 @@
-defmodule QuickStart.Users.Verify do
-  alias QuickStart.Users
+defmodule ReservaOnline.Users.Verify do
+  alias ReservaOnline.Users
   alias Users.User
 
   def call(%{"id" => id, "password" => password}) do

@@ -7,19 +7,19 @@
 # General application configuration
 import Config
 
-config :quick_start,
-  ecto_repos: [QuickStart.Repo],
+config :reserva_online,
+  ecto_repos: [ReservaOnline.Repo],
   generators: [timestamp_type: :utc_datetime]
 
 # Configures the endpoint
-config :quick_start, QuickStartWeb.Endpoint,
+config :reserva_online, ReservaOnlineWeb.Endpoint,
   url: [host: "localhost"],
   adapter: Phoenix.Endpoint.Cowboy2Adapter,
   render_errors: [
-    formats: [json: QuickStartWeb.ErrorJSON],
+    formats: [json: ReservaOnlineWeb.ErrorJSON],
     layout: false
   ],
-  pubsub_server: QuickStart.PubSub,
+  pubsub_server: ReservaOnline.PubSub,
   live_view: [signing_salt: "XrLwniMh"]
 
 # Configures Elixir's Logger

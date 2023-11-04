@@ -1,12 +1,12 @@
-defmodule QuickStartWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :quick_start
+defmodule ReservaOnlineWeb.Endpoint do
+  use Phoenix.Endpoint, otp_app: :reserva_online
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
     store: :cookie,
-    key: "_quick_start_key",
+    key: "_reserva_online_key",
     signing_salt: "cd81lmBq",
     same_site: "Lax"
   ]
@@ -19,15 +19,15 @@ defmodule QuickStartWeb.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/",
-    from: :quick_start,
+    from: :reserva_online,
     gzip: false,
-    only: QuickStartWeb.static_paths()
+    only: ReservaOnlineWeb.static_paths()
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
   if code_reloading? do
     plug Phoenix.CodeReloader
-    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :quick_start
+    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :reserva_online
   end
 
   plug Phoenix.LiveDashboard.RequestLogger,
@@ -45,5 +45,5 @@ defmodule QuickStartWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug QuickStartWeb.Router
+  plug ReservaOnlineWeb.Router
 end

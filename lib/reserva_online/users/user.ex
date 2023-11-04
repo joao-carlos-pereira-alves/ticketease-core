@@ -1,8 +1,8 @@
-defmodule QuickStart.Users.User do
+defmodule ReservaOnline.Users.User do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias QuickStart.Accounts.Account
+  alias ReservaOnline.Accounts.Account
   alias Ecto.Changeset
 
   @required_params_create [:name, :password, :email]

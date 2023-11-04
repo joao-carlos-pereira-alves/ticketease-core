@@ -2,10 +2,10 @@ version: '3'
 services:
   postgres:
     image: postgres:latest
-    container_name: quick-start-postgres
+    container_name: reserva-online-postgres
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: quick_start_dev
+      POSTGRES_DB: reservas_online_dev
     ports:
       - "5432:5432"

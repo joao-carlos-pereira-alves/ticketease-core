@@ -1,11 +1,11 @@
-defmodule QuickStartWeb.UsersController do
-  use QuickStartWeb, :controller
+defmodule ReservaOnlineWeb.UsersController do
+  use ReservaOnlineWeb, :controller
 
-  alias QuickStart.Users
-  alias QuickStartWeb.Token
+  alias ReservaOnline.Users
+  alias ReservaOnlineWeb.Token
   alias Users.User
 
-  action_fallback QuickStartWeb.FallbackController
+  action_fallback ReservaOnlineWeb.FallbackController
 
   def create(conn, params) do
     with {:ok, %User{} = user} <- Users.create(params) do

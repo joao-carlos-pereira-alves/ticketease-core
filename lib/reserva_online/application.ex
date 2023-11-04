@@ -1,4 +1,4 @@
-defmodule QuickStart.Application do
+defmodule ReservaOnline.Application do
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
   @moduledoc false
@@ -8,19 +8,19 @@ defmodule QuickStart.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      QuickStartWeb.Telemetry,
-      QuickStart.Repo,
-      {DNSCluster, query: Application.get_env(:quick_start, :dns_cluster_query) || :ignore},
-      {Phoenix.PubSub, name: QuickStart.PubSub},
-      # Start a worker by calling: QuickStart.Worker.start_link(arg)
-      # {QuickStart.Worker, arg},
+      ReservaOnlineWeb.Telemetry,
+      ReservaOnline.Repo,
+      {DNSCluster, query: Application.get_env(:reserva_online, :dns_cluster_query) || :ignore},
+      {Phoenix.PubSub, name: ReservaOnline.PubSub},
+      # Start a worker by calling: ReservaOnline.Worker.start_link(arg)
+      # {ReservaOnline.Worker, arg},
       # Start to serve requests, typically the last entry
-      QuickStartWeb.Endpoint
+      ReservaOnlineWeb.Endpoint
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: QuickStart.Supervisor]
+    opts = [strategy: :one_for_one, name: ReservaOnline.Supervisor]
     Supervisor.start_link(children, opts)
   end
 
@@ -28,7 +28,7 @@ defmodule QuickStart.Application do
   # whenever the application is updated.
   @impl true
   def config_change(changed, _new, removed) do
-    QuickStartWeb.Endpoint.config_change(changed, removed)
+    ReservaOnlineWeb.Endpoint.config_change(changed, removed)
     :ok
   end
 end

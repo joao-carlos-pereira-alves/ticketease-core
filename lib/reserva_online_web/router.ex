@@ -1,29 +1,29 @@
-defmodule QuickStartWeb.Router do
-  use QuickStartWeb, :router
+defmodule ReservaOnlineWeb.Router do
+  use ReservaOnlineWeb, :router
 
   pipeline :api do
     plug :accepts, ["json"]
   end
 
   pipeline :auth do
-    plug QuickStartWeb.Plugs.Auth
+    plug ReservaOnlineWeb.Plugs.Auth
   end
 
-  scope "/api/v1", QuickStartWeb do
+  scope "/api/v1", ReservaOnlineWeb do
     pipe_through :api
 
     resources "/sign_up", UsersController, only: [:create]
     post "/sign_in", UsersController, :login
   end
 
-  scope "/api/v1", QuickStartWeb do
+  scope "/api/v1", ReservaOnlineWeb do
     pipe_through [:api, :auth]
 
     resources "/users", UsersController, only: [:update, :delete, :show]
   end
 
   # Enable LiveDashboard in development
-  if Application.compile_env(:quick_start, :dev_routes) do
+  if Application.compile_env(:reserva_online, :dev_routes) do
     # If you want to use the LiveDashboard in production, you should put
     # it behind authentication and allow only admins to access it.
     # If your application does not have an admins-only section yet,
@@ -34,7 +34,7 @@ defmodule QuickStartWeb.Router do
     scope "/dev" do
       pipe_through [:fetch_session, :protect_from_forgery]
 
-      live_dashboard "/dashboard", metrics: QuickStartWeb.Telemetry
+      live_dashboard "/dashboard", metrics: ReservaOnlineWeb.Telemetry
     end
   end
 end
