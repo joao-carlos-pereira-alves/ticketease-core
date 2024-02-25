@@ -1,0 +1,4 @@
+# config/locales/pt-BR.yml
+
+msgid "active"
+msgstr "Ativooo"

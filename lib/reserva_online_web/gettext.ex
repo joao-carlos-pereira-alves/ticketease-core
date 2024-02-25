@@ -20,5 +20,6 @@ defmodule ReservaOnlineWeb.Gettext do
 
   See the [Gettext Docs](https://hexdocs.pm/gettext) for detailed usage.
   """
-  use Gettext, otp_app: :reserva_online
+
+  use Gettext, otp_app: :reserva_online, priv: "priv/messages"
 end

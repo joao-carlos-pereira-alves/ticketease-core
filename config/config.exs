@@ -11,6 +11,9 @@ config :reserva_online,
   ecto_repos: [ReservaOnline.Repo],
   generators: [timestamp_type: :utc_datetime]
 
+# I18n config
+config :reserva_online, ReservaOnline.Gettext, default_locale: "pt_BR", locales: ~w(pt_BR en)
+
 # Configures the endpoint
 config :reserva_online, ReservaOnlineWeb.Endpoint,
   url: [host: "localhost"],

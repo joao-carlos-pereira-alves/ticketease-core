@@ -3,6 +3,7 @@ defmodule ReservaOnlineWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug ReservaOnlineWeb.Plugs.Locale, "pt_BR"
   end
 
   pipeline :auth do
