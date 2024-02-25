@@ -1,8 +1,8 @@
-defmodule ReservaOnline.Users.User do
+defmodule HelpDesk.Users.User do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias ReservaOnline.Accounts.Account
+  alias HelpDesk.Accounts.Account
   alias Ecto.Changeset
 
   @required_params_create [:name, :password, :email]

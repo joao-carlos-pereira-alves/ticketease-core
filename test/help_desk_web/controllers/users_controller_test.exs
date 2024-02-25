@@ -1,7 +1,7 @@
-defmodule ReservaOnlineWeb.UsersControllerTest do
-  use ReservaOnlineWeb.ConnCase
+defmodule HelpDeskWeb.UsersControllerTest do
+  use HelpDeskWeb.ConnCase
 
-  alias ReservaOnline.Users
+  alias HelpDesk.Users
   alias Users.User
 
   import Mox

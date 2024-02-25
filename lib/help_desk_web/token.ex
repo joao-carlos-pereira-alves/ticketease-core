@@ -1,8 +1,8 @@
-defmodule ReservaOnlineWeb.Token do
+defmodule HelpDeskWeb.Token do
   alias Phoenix.Token
-  alias ReservaOnlineWeb.Endpoint
+  alias HelpDeskWeb.Endpoint
 
-  @sign_salt "reserva_online_api"
+  @sign_salt "help_desk_api"
 
   def sign(user) do
     Token.sign(Endpoint, @sign_salt, %{user_id: user.id})

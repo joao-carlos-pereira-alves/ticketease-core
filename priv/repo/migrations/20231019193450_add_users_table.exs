@@ -1,4 +1,4 @@
-defmodule ReservaOnline.Repo.Migrations.AddUsersTable do
+defmodule HelpDesk.Repo.Migrations.AddUsersTable do
   use Ecto.Migration
 
   def change do

@@ -1,7 +1,7 @@
-defmodule ReservaOnlineWeb.Plugs.Auth do
+defmodule HelpDeskWeb.Plugs.Auth do
   import Plug.Conn
 
-  alias ReservaOnlineWeb.Token
+  alias HelpDeskWeb.Token
 
   def init(opts), do: opts
 
@@ -13,7 +13,7 @@ defmodule ReservaOnlineWeb.Plugs.Auth do
       _error ->
         conn
         |> put_status(:unauthorized)
-        |> Phoenix.Controller.put_view(json: ReservaOnlineWeb.ErrorJSON)
+        |> Phoenix.Controller.put_view(json: HelpDeskWeb.ErrorJSON)
         |> Phoenix.Controller.render(:error, status: :unauthorized)
         |> halt()
     end

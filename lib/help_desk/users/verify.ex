@@ -1,6 +1,5 @@
-defmodule ReservaOnline.Users.Verify do
-  alias ReservaOnline.Users
-  alias Users.User
+defmodule HelpDesk.Users.Verify do
+  alias HelpDesk.Users
 
   def call(%{"id" => id, "password" => password}) do
     case Users.get(id) do

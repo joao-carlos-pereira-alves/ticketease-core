@@ -1,11 +1,11 @@
-defmodule ReservaOnlineWeb.UsersController do
-  use ReservaOnlineWeb, :controller
+defmodule HelpDeskWeb.UsersController do
+  use HelpDeskWeb, :controller
 
-  alias ReservaOnline.Users
-  alias ReservaOnlineWeb.Token
+  alias HelpDesk.Users
+  alias HelpDeskWeb.Token
   alias Users.User
 
-  action_fallback ReservaOnlineWeb.FallbackController
+  action_fallback HelpDeskWeb.FallbackController
 
   def create(conn, params) do
     with {:ok, %User{} = user} <- Users.create(params) do
@@ -24,6 +24,7 @@ defmodule ReservaOnlineWeb.UsersController do
   end
 
   def login(conn, params) do
+    IO.inspect("Deu bom? #{params}")
     with {:ok, %User{} = user} <- Users.login(params) do
       token = Token.sign(user)
       conn

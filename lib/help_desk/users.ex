@@ -1,9 +1,9 @@
-defmodule ReservaOnline.Users do
-  alias ReservaOnline.Users.Create
-  alias ReservaOnline.Users.Delete
-  alias ReservaOnline.Users.Get
-  alias ReservaOnline.Users.Update
-  alias ReservaOnline.Users.Verify
+defmodule HelpDesk.Users do
+  alias HelpDesk.Users.Create
+  alias HelpDesk.Users.Delete
+  alias HelpDesk.Users.Get
+  alias HelpDesk.Users.Update
+  alias HelpDesk.Users.Verify
 
   defdelegate create(params), to: Create, as: :call
   defdelegate delete(id), to: Delete, as: :call

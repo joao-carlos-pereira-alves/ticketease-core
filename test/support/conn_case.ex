@@ -1,4 +1,4 @@
-defmodule ReservaOnlineWeb.ConnCase do
+defmodule HelpDeskWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -11,7 +11,7 @@ defmodule ReservaOnlineWeb.ConnCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use ReservaOnlineWeb.ConnCase, async: true`, although
+  by setting `use HelpDeskWeb.ConnCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -20,19 +20,19 @@ defmodule ReservaOnlineWeb.ConnCase do
   using do
     quote do
       # The default endpoint for testing
-      @endpoint ReservaOnlineWeb.Endpoint
+      @endpoint HelpDeskWeb.Endpoint
 
-      use ReservaOnlineWeb, :verified_routes
+      use HelpDeskWeb, :verified_routes
 
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
-      import ReservaOnlineWeb.ConnCase
+      import HelpDeskWeb.ConnCase
     end
   end
 
   setup tags do
-    ReservaOnline.DataCase.setup_sandbox(tags)
+    HelpDesk.DataCase.setup_sandbox(tags)
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 end

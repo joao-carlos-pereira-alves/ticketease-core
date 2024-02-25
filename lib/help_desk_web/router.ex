@@ -1,29 +1,29 @@
-defmodule ReservaOnlineWeb.Router do
-  use ReservaOnlineWeb, :router
+defmodule HelpDeskWeb.Router do
+  use HelpDeskWeb, :router
 
   pipeline :api do
     plug :accepts, ["json"]
   end
 
   pipeline :auth do
-    plug ReservaOnlineWeb.Plugs.Auth
+    plug HelpDeskWeb.Plugs.Auth
   end
 
-  scope "/api/v1", ReservaOnlineWeb do
+  scope "/api/v1", HelpDeskWeb do
     pipe_through :api
 
     resources "/sign_up", UsersController, only: [:create]
     post "/sign_in", UsersController, :login
   end
 
-  scope "/api/v1", ReservaOnlineWeb do
+  scope "/api/v1", HelpDeskWeb do
     pipe_through [:api, :auth]
 
     resources "/users", UsersController, only: [:update, :delete, :show]
   end
 
   # Enable LiveDashboard in development
-  if Application.compile_env(:reserva_online, :dev_routes) do
+  if Application.compile_env(:help_desk, :dev_routes) do
     # If you want to use the LiveDashboard in production, you should put
     # it behind authentication and allow only admins to access it.
     # If your application does not have an admins-only section yet,
@@ -34,7 +34,7 @@ defmodule ReservaOnlineWeb.Router do
     scope "/dev" do
       pipe_through [:fetch_session, :protect_from_forgery]
 
-      live_dashboard "/dashboard", metrics: ReservaOnlineWeb.Telemetry
+      live_dashboard "/dashboard", metrics: HelpDeskWeb.Telemetry
     end
   end
 end
