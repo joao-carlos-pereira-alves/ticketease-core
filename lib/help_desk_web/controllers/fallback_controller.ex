@@ -1,6 +1,13 @@
 defmodule HelpDeskWeb.FallbackController do
   use HelpDeskWeb, :controller
 
+  def call(conn, {:error, %{status: status, message: error_message}}) do
+    conn
+    |> put_status(status)
+    |> put_view(json: HelpDeskWeb.ErrorJSON)
+    |> render(:error, status: status, message: error_message)
+  end
+
   def call(conn, { :error, :not_found }) do
     conn
     |> put_status(:not_found)

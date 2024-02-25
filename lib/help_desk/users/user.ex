@@ -1,8 +1,11 @@
 defmodule HelpDesk.Users.User do
+  @moduledoc """
+    This module contains the methods responsible for user/authentication management.
+  """
+  @moduledoc since: "1.0.0"
+
   use Ecto.Schema
   import Ecto.Changeset
-
-  alias Ecto.Changeset
 
   @required_params_create [:name, :password, :email]
   @required_params_update [:name, :email]
@@ -36,6 +39,7 @@ defmodule HelpDesk.Users.User do
     changeset
     |> validate_required(fields)
     |> validate_length(:name, min: 3)
+    |> validate_length(:name, max: 50)
     |> validate_format(:email, ~r/@/)
   end
 
