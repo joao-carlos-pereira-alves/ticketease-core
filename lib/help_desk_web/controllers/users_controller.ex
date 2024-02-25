@@ -24,7 +24,6 @@ defmodule HelpDeskWeb.UsersController do
   end
 
   def login(conn, params) do
-    IO.inspect("Deu bom? #{params}")
     with {:ok, %User{} = user} <- Users.login(params) do
       token = Token.sign(user)
       conn
