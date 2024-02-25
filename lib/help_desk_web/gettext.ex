@@ -20,10 +20,5 @@ defmodule HelpDeskWeb.Gettext do
 
   See the [Gettext Docs](https://hexdocs.pm/gettext) for detailed usage.
   """
-<<<<<<< HEAD:lib/reserva_online_web/gettext.ex
-
-  use Gettext, otp_app: :reserva_online, priv: "priv/messages"
-=======
   use Gettext, otp_app: :help_desk
->>>>>>> master:lib/help_desk_web/gettext.ex
 end
