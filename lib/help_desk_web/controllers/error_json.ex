@@ -13,10 +13,24 @@ defmodule HelpDeskWeb.ErrorJSON do
     %{errors: %{detail: Phoenix.Controller.status_message_from_template(template)}}
   end
 
+  def error(%{status: :unauthorized, message: error_message}) do
+    %{
+      status: :unauthorized,
+      message: error_message
+    }
+  end
+
+  def error(%{status: :not_found, message: error_message}) do
+    %{
+      status: :not_found,
+      message: error_message
+    }
+  end
+
   def error(%{status: :not_found}) do
     %{
       status: :not_found,
-      message: "Resource not found"
+      message: "Recurso não encontrado"
     }
   end
 

@@ -12,7 +12,7 @@ config :help_desk,
   generators: [timestamp_type: :utc_datetime]
 
 # I18n config
-config :reserva_online, ReservaOnline.Gettext, default_locale: "pt_BR", locales: ~w(pt_BR en)
+config :help_desk, HelpDesk.Gettext, default_locale: "pt_BR", locales: ~w(pt_BR en)
 
 # Configures the endpoint
 config :help_desk, HelpDeskWeb.Endpoint,

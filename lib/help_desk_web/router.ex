@@ -3,7 +3,6 @@ defmodule HelpDeskWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
-    plug ReservaOnlineWeb.Plugs.Locale, "pt_BR"
   end
 
   pipeline :auth do
@@ -20,7 +19,7 @@ defmodule HelpDeskWeb.Router do
   scope "/api/v1", HelpDeskWeb do
     pipe_through [:api, :auth]
 
-    resources "/users", UsersController, only: [:update, :delete, :show]
+    resources "/users", UsersController, only: [:update, :show]
   end
 
   # Enable LiveDashboard in development
