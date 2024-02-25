@@ -7,22 +7,22 @@
 # General application configuration
 import Config
 
-config :reserva_online,
-  ecto_repos: [ReservaOnline.Repo],
+config :help_desk,
+  ecto_repos: [HelpDesk.Repo],
   generators: [timestamp_type: :utc_datetime]
 
 # I18n config
 config :reserva_online, ReservaOnline.Gettext, default_locale: "pt_BR", locales: ~w(pt_BR en)
 
 # Configures the endpoint
-config :reserva_online, ReservaOnlineWeb.Endpoint,
+config :help_desk, HelpDeskWeb.Endpoint,
   url: [host: "localhost"],
   adapter: Phoenix.Endpoint.Cowboy2Adapter,
   render_errors: [
-    formats: [json: ReservaOnlineWeb.ErrorJSON],
+    formats: [json: HelpDeskWeb.ErrorJSON],
     layout: false
   ],
-  pubsub_server: ReservaOnline.PubSub,
+  pubsub_server: HelpDesk.PubSub,
   live_view: [signing_salt: "XrLwniMh"]
 
 # Configures Elixir's Logger

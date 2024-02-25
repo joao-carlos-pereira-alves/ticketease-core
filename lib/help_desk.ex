@@ -1,6 +1,6 @@
-defmodule ReservaOnline do
+defmodule HelpDesk do
   @moduledoc """
-  ReservaOnline keeps the contexts that define your domain
+  HelpDesk keeps the contexts that define your domain
   and business logic.
 
   Contexts are also responsible for managing your data, regardless

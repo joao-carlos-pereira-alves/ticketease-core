@@ -1,6 +1,6 @@
-defmodule ReservaOnline.Users.Update do
-  alias ReservaOnline.Users.User
-  alias ReservaOnline.Repo
+defmodule HelpDesk.Users.Update do
+  alias HelpDesk.Users.User
+  alias HelpDesk.Repo
 
   def call(%{"id" => id} = params) do
     case Repo.get(User, id) do

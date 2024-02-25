@@ -1,12 +1,12 @@
-defmodule ReservaOnlineWeb do
+defmodule HelpDeskWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, components, channels, and so on.
 
   This can be used in your application as:
 
-      use ReservaOnlineWeb, :controller
-      use ReservaOnlineWeb, :html
+      use HelpDeskWeb, :controller
+      use HelpDeskWeb, :html
 
   The definitions below will be executed for every controller,
   component, etc, so keep them short and clean, focused
@@ -39,10 +39,10 @@ defmodule ReservaOnlineWeb do
     quote do
       use Phoenix.Controller,
         formats: [:html, :json],
-        layouts: [html: ReservaOnlineWeb.Layouts]
+        layouts: [html: HelpDeskWeb.Layouts]
 
       import Plug.Conn
-      import ReservaOnlineWeb.Gettext
+      import HelpDeskWeb.Gettext
 
       unquote(verified_routes())
     end
@@ -51,9 +51,9 @@ defmodule ReservaOnlineWeb do
   def verified_routes do
     quote do
       use Phoenix.VerifiedRoutes,
-        endpoint: ReservaOnlineWeb.Endpoint,
-        router: ReservaOnlineWeb.Router,
-        statics: ReservaOnlineWeb.static_paths()
+        endpoint: HelpDeskWeb.Endpoint,
+        router: HelpDeskWeb.Router,
+        statics: HelpDeskWeb.static_paths()
     end
   end
 

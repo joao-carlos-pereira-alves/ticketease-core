@@ -1,12 +1,12 @@
-defmodule ReservaOnlineWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :reserva_online
+defmodule HelpDeskWeb.Endpoint do
+  use Phoenix.Endpoint, otp_app: :help_desk
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
     store: :cookie,
-    key: "_reserva_online_key",
+    key: "_help_desk_key",
     signing_salt: "cd81lmBq",
     same_site: "Lax"
   ]
@@ -19,15 +19,15 @@ defmodule ReservaOnlineWeb.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/",
-    from: :reserva_online,
+    from: :help_desk,
     gzip: false,
-    only: ReservaOnlineWeb.static_paths()
+    only: HelpDeskWeb.static_paths()
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
   if code_reloading? do
     plug Phoenix.CodeReloader
-    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :reserva_online
+    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :help_desk
   end
 
   plug Phoenix.LiveDashboard.RequestLogger,
@@ -45,5 +45,5 @@ defmodule ReservaOnlineWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug ReservaOnlineWeb.Router
+  plug HelpDeskWeb.Router
 end

@@ -1,9 +1,9 @@
-defmodule ReservaOnline.MixProject do
+defmodule HelpDesk.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :reserva_online,
+      app: :help_desk,
       version: "0.1.0",
       elixir: "~> 1.14",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -18,7 +18,7 @@ defmodule ReservaOnline.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {ReservaOnline.Application, []},
+      mod: {HelpDesk.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end

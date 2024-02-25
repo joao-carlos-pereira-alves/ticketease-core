@@ -1,8 +1,7 @@
-defmodule ReservaOnline.Users.User do
+defmodule HelpDesk.Users.User do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias ReservaOnline.Accounts.Account
   alias Ecto.Changeset
 
   @required_params_create [:name, :password, :email]
@@ -13,7 +12,6 @@ defmodule ReservaOnline.Users.User do
     field :password, :string, virtual: true
     field :password_hash, :string
     field :email, :string
-    has_one :account, Account
 
     timestamps()
   end
