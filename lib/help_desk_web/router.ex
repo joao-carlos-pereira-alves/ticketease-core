@@ -34,6 +34,10 @@ defmodule HelpDeskWeb.Router do
     scope "/dev" do
       pipe_through [:fetch_session, :protect_from_forgery]
 
+      if Mix.env == :dev do
+        forward "/sent_emails", Bamboo.SentEmailViewerPlug
+      end
+
       live_dashboard "/dashboard", metrics: HelpDeskWeb.Telemetry
     end
   end

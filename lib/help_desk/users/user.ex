@@ -7,6 +7,10 @@ defmodule HelpDesk.Users.User do
   use Ecto.Schema
   import Ecto.Changeset
 
+  require Logger
+  alias HelpDesk.Mailers.User
+  alias HelpDesk.Mailer
+
   @required_params_create [:name, :password, :email]
   @required_params_update [:name, :email]
 
@@ -35,9 +39,15 @@ defmodule HelpDesk.Users.User do
     |> add_password_hash()
   end
 
+  def send_confirmation_email(user) do
+    User.welcome_email(user)
+    |> Mailer.deliver_later()
+  end
+
   defp do_validations(changeset, fields) do
     changeset
     |> validate_required(fields)
+    |> unique_constraint(:email)
     |> validate_length(:name, min: 3)
     |> validate_length(:name, max: 50)
     |> validate_format(:email, ~r/@/)
