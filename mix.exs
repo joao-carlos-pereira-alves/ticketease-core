@@ -48,7 +48,8 @@ defmodule HelpDesk.MixProject do
       {:bypass, "~> 2.1", only: :test},
       {:mox, "~> 1.0", only: :test},
       {:decimal, "~> 2.0"},
-      {:bamboo, "~> 1.5"}
+      {:bamboo, "~> 1.5"},
+      {:dotenvy, "~> 0.6.0"}
     ]
   end
 

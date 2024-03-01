@@ -1,5 +1,7 @@
 defmodule HelpDeskWeb.UsersControllerTest do
   use HelpDeskWeb.ConnCase
+  use ExUnit.Case
+  use Bamboo.Test, shared: :true
 
   alias HelpDesk.Users
   alias Users.User
@@ -101,6 +103,34 @@ defmodule HelpDeskWeb.UsersControllerTest do
       expected_response = %{"errors" => %{"email" => ["has invalid format"]}}
 
       assert response == expected_response
+    end
+
+    # test "after registering, the user gets a welcome email" do
+    #   user = build_new_user()
+    #   expected_email = HelpDesk.Mailers.User.welcome_email(user)
+
+    #   Users.create(user)
+
+    #   assert_delivered_email expected_email
+    # end
+
+    test "welcome email" do
+      user = build_new_user()
+
+      email = HelpDesk.Mailers.User.welcome_email(user)
+
+      assert email.to == user.email
+      assert email.from == "hello@example.com"
+      assert email.html_body == welcome_user_email_body(user)
+      assert email.text_body =~ "Aproveite para conhecer nosso sistema"
+    end
+
+    def welcome_user_email_body(user) do
+      "<p>Seja Bem vindo <strong> #{user.name} </strong> ao HelpDesk!</p>"
+    end
+
+    defp build_new_user do
+      %{name: "João", email: "welcome@myapp.com", password: "password123"}
     end
   end
 
