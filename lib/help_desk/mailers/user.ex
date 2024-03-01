@@ -2,8 +2,8 @@ defmodule HelpDesk.Mailers.User do
   import Bamboo.Email
   import Bamboo.Phoenix
 
-  @from_address "hello@example.com"
-  @reply_to_address "reply@example.com"
+  @from_address "hello@example.com" # System.get_env("FROM_ADDRESS_SMTP")
+  @reply_to_address "reply@example.com" # System.get_env("REPLY_TO_ADDRESS_SMTP")
 
   def welcome_email(user) do
     html_body = email_body(user)
@@ -22,11 +22,7 @@ defmodule HelpDesk.Mailers.User do
     |> put_text_layout({HelpDeskWeb.LayoutView, "email.text"}) # Set default text layout
   end
 
-  defp email_body(user) do
-    "
-    <p>
-      Seja Bem vindo <strong> #{user.name} </strong> ao HelpDesk!
-    </p>
-    "
+  def email_body(user) do
+    "<p>Seja Bem vindo <strong> #{user.name} </strong> ao HelpDesk!</p>"
   end
 end

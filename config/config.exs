@@ -7,6 +7,8 @@
 # General application configuration
 import Config
 
+config :help_desk, from_address: System.get_env("FROM_ADDRESS_SMTP")
+
 config :help_desk,
   ecto_repos: [HelpDesk.Repo],
   generators: [timestamp_type: :utc_datetime]
