@@ -19,7 +19,7 @@ defmodule HelpDesk.MixProject do
   def application do
     [
       mod: {HelpDesk.Application, []},
-      extra_applications: [:logger, :runtime_tools, :bamboo]
+      extra_applications: [:logger, :runtime_tools, :bamboo, :guardian]
     ]
   end
 
@@ -49,7 +49,7 @@ defmodule HelpDesk.MixProject do
       {:mox, "~> 1.0", only: :test},
       {:decimal, "~> 2.0"},
       {:bamboo, "~> 1.5"},
-      {:dotenvy, "~> 0.6.0"}
+      {:guardian, "~> 2.0"}
     ]
   end
 

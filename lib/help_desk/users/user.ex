@@ -19,6 +19,7 @@ defmodule HelpDesk.Users.User do
     field :password, :string, virtual: true
     field :password_hash, :string
     field :email, :string
+    belongs_to :workspace, HelpDesk.Workspaces.Workspace
 
     timestamps()
   end
