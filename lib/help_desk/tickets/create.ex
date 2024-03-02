@@ -9,8 +9,8 @@ defmodule HelpDesk.Tickets.Create do
     |> handle_insert_result()
   end
 
-  defp handle_insert_result({:ok, Ticket}) do
-    {:ok, Ticket}
+  defp handle_insert_result({:ok, ticket}) do
+    {:ok, ticket}
   end
 
   defp handle_insert_result({:error, changeset}) do
