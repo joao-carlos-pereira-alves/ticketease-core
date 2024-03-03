@@ -16,7 +16,7 @@ defmodule HelpDeskWeb.UsersJSON do
   end
   def delete(%{user: user}), do: %{ data: data(user) }
   def get(%{user: user}), do: %{ data: data(user) }
-  def update(%{user: user}), do: %{ message: "User atualizado com sucesso.", data: data(user) }
+  def update(%{user: user}), do: %{ message: "Usuário atualizado com sucesso.", data: data(user) }
 
   defp data(%User{} = user) do
     %{

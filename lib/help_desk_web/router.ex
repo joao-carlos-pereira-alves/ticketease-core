@@ -19,8 +19,10 @@ defmodule HelpDeskWeb.Router do
   scope "/api/v1", HelpDeskWeb do
     pipe_through [:api | (if Mix.env == :test, do: [], else: [:auth])]
 
-    resources "/users", UsersController,     only: [:update, :show]
-    resources "/tickets", TicketsController, only: [:create, :show, :delete]
+    resources "/users", UsersController,                only: [:update, :show]
+    resources "/tickets", TicketsController,            only: [:create, :show, :delete]
+    resources "/workspaces", WorkspacesController,      only: [:create, :show, :delete]
+    resources "/workspace_users", WorkspaceUsersController, only: [:create]
   end
 
   # Enable LiveDashboard in development

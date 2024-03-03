@@ -4,7 +4,7 @@ defmodule HelpDeskWeb.TicketsControllerTest do
   use Bamboo.Test, shared: true
 
   alias HelpDesk.Tickets
-  alias Tickets.Ticke
+  alias Tickets.Ticket
 
   describe "create/2" do
     test "successfully creates an ticket", %{conn: conn} do

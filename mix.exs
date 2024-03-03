@@ -49,7 +49,8 @@ defmodule HelpDesk.MixProject do
       {:mox, "~> 1.0", only: :test},
       {:decimal, "~> 2.0"},
       {:bamboo, "~> 1.5"},
-      {:guardian, "~> 2.0"}
+      {:guardian, "~> 2.0"},
+      {:ex_doc, "~> 0.24", only: :dev, runtime: false}
     ]
   end
 

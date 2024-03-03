@@ -134,6 +134,47 @@ defmodule HelpDeskWeb.UsersControllerTest do
     end
   end
 
+  # describe "update/2" do
+  #   setup [:create_user]
+  #   setup [:create_workspace]
+
+  #   test "success adding relationship to workspace", %{conn: conn, user: user, workspace: workspace} do
+  #     response =
+  #       conn
+  #       |> patch(~p"/api/v1/users/#{user.id}", %{ workspace_id: workspace.id })
+  #       |> json_response(:ok)
+
+  #     assert %{
+  #              "data" => %{"id" => _id},
+  #              "message" => "Usuário atualizado com sucesso."
+  #            } = response
+  #   end
+
+  #   defp create_user(_) do
+  #     ticket_params = %{
+  #       subject: "Lorem Ipsum",
+  #       description: "Lorem Ipsum",
+  #       priority: "medium",
+  #       tags: [:urgent, :critical, :deadline]
+  #     }
+
+  #     {:ok, ticket} = HelpDesk.Tickets.create(ticket_params)
+
+  #     %{ticket: ticket}
+  #   end
+
+  #   defp create_workspace(_) do
+  #     workspace_params = %{
+  #       title: "Lorem Ipsum",
+  #       responsible_email: "hello@example.com"
+  #     }
+
+  #     {:ok, workspace} = HelpDesk.Workspaces.create(workspace_params)
+
+  #     %{workspace: workspace}
+  #   end
+  # end
+
   describe "login/2" do
     test "successfully sign in an user", %{conn: conn} do
       params = %{
