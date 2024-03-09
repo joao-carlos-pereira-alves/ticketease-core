@@ -10,7 +10,6 @@ defmodule HelpDeskWeb.Token do
   end
 
   def verify(token) do
-    Logger.info("token #{token}")
     case Token.verify(Endpoint, @sign_salt, token) do
       {:ok, _data} = result -> result
       {:error, _error} = error -> error
