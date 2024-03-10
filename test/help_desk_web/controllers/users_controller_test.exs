@@ -32,7 +32,7 @@ defmodule HelpDeskWeb.UsersControllerTest do
         |> json_response(:created)
 
       assert %{
-               "data" => %{"email" => "teste@gmail.com", "id" => _id, "name" => "João"},
+               "data" => %{"id" => _id, "name" => "João"},
                "message" => "User criado com sucesso."
              } = response
     end

@@ -30,6 +30,14 @@ defmodule HelpDeskWeb.TicketsController do
     end
   end
 
+  def index(conn, _) do
+    with {:ok, tickets} <- Tickets.get() do
+      conn
+      |> put_status(:ok)
+      |> render(:get, tickets: tickets)
+    end
+  end
+
   def update(conn, params) do
     with {:ok, %Ticket{} = ticket} <- Tickets.update(params) do
       conn

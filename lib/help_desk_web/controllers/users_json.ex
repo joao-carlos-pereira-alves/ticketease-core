@@ -8,20 +8,23 @@ defmodule HelpDeskWeb.UsersJSON do
     }
   end
 
-  def login(%{token: token}) do
+  def login(%{token: token, user: user}) do
     %{
       message: "Usuário autenticado com sucesso",
-      token: token
+      token: token,
+      data: data(user)
     }
   end
+
   def delete(%{user: user}), do: %{ data: data(user) }
+
   def get(%{user: user}), do: %{ data: data(user) }
+
   def update(%{user: user}), do: %{ message: "Usuário atualizado com sucesso.", data: data(user) }
 
   defp data(%User{} = user) do
     %{
       id: user.id,
-      email: user.email,
       name: user.name
     }
   end

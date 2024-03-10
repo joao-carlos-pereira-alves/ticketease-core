@@ -1,5 +1,6 @@
 defmodule HelpDeskWeb.Token do
   require Logger
+
   alias Phoenix.Token
   alias HelpDeskWeb.Endpoint
 

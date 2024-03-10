@@ -28,12 +28,22 @@ defmodule HelpDeskWeb.UsersController do
       token = Token.sign(user)
       conn
       |> put_status(:ok)
-      |> render(:login, token: token)
+      |> render(:login, token: token, user: user)
     end
   end
 
   def show(conn, %{"id" => id}) do
     with {:ok, %User{} = user} <- Users.get(id) do
+      conn
+      |> put_status(:ok)
+      |> render(:get, user: user)
+    end
+  end
+
+  def show_current_user(conn, _) do
+    %{ user_id: user_id } = conn.assigns
+
+    with {:ok, %User{} = user} <- Users.get(user_id) do
       conn
       |> put_status(:ok)
       |> render(:get, user: user)
