@@ -31,7 +31,7 @@ defmodule HelpDeskWeb.TicketsController do
   end
 
   def index(conn, _) do
-    with {:ok, tickets} <- Tickets.get() do
+    with {:ok, tickets} <- Tickets.get_by_params(conn.params) do
       conn
       |> put_status(:ok)
       |> render(:get, tickets: tickets)
