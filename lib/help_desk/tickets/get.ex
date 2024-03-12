@@ -32,6 +32,17 @@ defmodule HelpDesk.Tickets.Get do
     where(query, [t], ilike(t.subject, ^"%#{search_term}%") or ilike(t.description, ^"%#{search_term}%"))
   end
 
+  defp apply_order(query, order_filter) do
+    order_expressions =
+      case order_filter do
+        nil -> [desc: :inserted_at]
+        "inserted_at_asc"  -> [asc: :inserted_at]
+        "inserted_at_desc" -> [desc: :inserted_at]
+      end
+
+    order_by(query, ^order_expressions)
+  end
+
   defp apply_filters(params) do
     query = from(t in Ticket)
 
@@ -52,6 +63,8 @@ defmodule HelpDesk.Tickets.Get do
         {:ok, search_term} -> apply_search_filter(query, search_term)
         :error -> query
       end
+
+    query = apply_order(query, Map.get(params, "order_by"))
 
     query
   end

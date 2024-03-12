@@ -34,7 +34,7 @@ defmodule HelpDeskWeb.TicketsController do
     with {:ok, tickets} <- Tickets.get_by_params(conn.params) do
       conn
       |> put_status(:ok)
-      |> render(:get, tickets: tickets)
+      |> render(:get, tickets: tickets, total_count: length(tickets))
     end
   end
 
