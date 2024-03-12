@@ -5,11 +5,13 @@ defmodule HelpDesk.Tickets.Get do
   alias HelpDesk.Repo
 
   def call_by_params(params) do
-    query = apply_filters(params)
+    query  = apply_filters(params)
+    offset = count_items(query)
+    query  = paginate(query, params)
 
     case Repo.all(query) do
       [] -> {:error, :not_found}
-      tickets -> {:ok, tickets}
+      tickets -> {:ok, tickets, params, offset}
     end
   end
 
@@ -67,5 +69,21 @@ defmodule HelpDesk.Tickets.Get do
     query = apply_order(query, Map.get(params, "order_by"))
 
     query
+  end
+
+  defp paginate(query, params) do
+    per_page = Map.get(params, "per_page", 5) |> String.to_integer()
+    page = Map.get(params, "page", 1) |> String.to_integer()
+
+    offset = (page - 1) * per_page
+
+    limit(query, ^per_page)
+    |> offset(^offset)
+  end
+
+  defp count_items(query) do
+    query
+    |> Repo.all()
+    |> length()
   end
 end

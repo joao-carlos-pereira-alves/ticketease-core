@@ -11,7 +11,7 @@ defmodule HelpDeskWeb.TicketsJSON do
   def delete(%{ticket: ticket}), do: %{ message: "Ticket excluído com sucesso.", data: data(ticket) }
 
   def get(%{ticket: ticket}), do: %{ data: data(ticket) }
-  def get(%{tickets: tickets, total_count: total_count}), do: %{ data: data(tickets), pagination: pagination(total_count)  }
+  def get(%{tickets: tickets, pagination: pagination, offset: offset}), do: %{ data: data(tickets), pagination: pagination(offset, pagination)  }
 
   def update(%{ticket: ticket}), do: %{ message: "Ticket atualizado com sucesso.", data: data(ticket) }
 
@@ -31,9 +31,11 @@ defmodule HelpDeskWeb.TicketsJSON do
     }
   end
 
-  defp pagination(total_count) do
+  defp pagination(offset, pagination) do
     %{
-      total: total_count
+      total: offset,
+      per_page: pagination["per_page"],
+      page: pagination["page"]
     }
   end
 end
