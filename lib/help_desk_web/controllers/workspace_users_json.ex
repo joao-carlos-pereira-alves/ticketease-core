@@ -21,7 +21,10 @@ defmodule HelpDeskWeb.WorkspaceUsersJSON do
   defp data(%WorkspaceUser{workspace: workspace} = workspace_user) do
     %{
       id: workspace_user.id,
-      workspace: %{id: workspace.id, title: workspace.title}
+      workspace: %{
+        id: workspace.id,
+        title: workspace.title
+      }
     }
   end
 end
