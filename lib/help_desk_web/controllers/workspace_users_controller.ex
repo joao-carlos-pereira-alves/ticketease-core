@@ -21,4 +21,14 @@ defmodule HelpDeskWeb.WorkspaceUsersController do
       |> render(:delete, workspace_user: workspace_user)
     end
   end
+
+  def index(conn, _) do
+    %{ user_id: user_id } = conn.assigns
+
+    with {:ok, workspaces} <- WorkspaceUsers.get_all(user_id) do
+      conn
+      |> put_status(:ok)
+      |> render(:get, workspace_users: workspaces)
+    end
+  end
 end

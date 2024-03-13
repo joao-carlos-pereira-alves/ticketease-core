@@ -22,7 +22,7 @@ defmodule HelpDeskWeb.Router do
     resources "/users", UsersController,                only: [:update, :show]
     resources "/tickets", TicketsController,            only: [:create, :show, :index, :delete]
     resources "/workspaces", WorkspacesController,      only: [:create, :show, :delete]
-    resources "/workspace_users", WorkspaceUsersController, only: [:create]
+    resources "/workspace_users", WorkspaceUsersController, only: [:create, :show, :index]
 
     get "/show_current_user", UsersController, :show_current_user
   end

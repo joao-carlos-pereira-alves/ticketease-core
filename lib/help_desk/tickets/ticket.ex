@@ -30,7 +30,7 @@ defmodule HelpDesk.Tickets.Ticket do
     :canceled
   ]
 
-  @required_params_create [:subject, :description, :tags]
+  @required_params_create [:subject, :description, :tags, :priority]
   @required_params_update []
 
   schema "tickets" do
