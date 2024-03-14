@@ -26,7 +26,7 @@ defmodule HelpDesk.Workspaces.Workspace do
     :archived
   ]
 
-  @required_params_create [:title, :responsible_email]
+  @required_params_create [:title, :responsible_email, :description]
   @required_params_update []
 
   schema "workspaces" do
@@ -36,6 +36,7 @@ defmodule HelpDesk.Workspaces.Workspace do
     field :status, Ecto.Enum, values: @workspace_status
 
     has_many :workspace_users, HelpDesk.WorkspaceUsers.WorkspaceUser
+    has_many :tickets, HelpDesk.Tickets.Ticket
 
     timestamps()
   end

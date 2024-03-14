@@ -66,9 +66,19 @@ defmodule HelpDesk.Tickets.Get do
         :error -> query
       end
 
+    query =
+      case Map.fetch(params, "workspace_id") do
+        {:ok, workspace_id} -> filter_by_workspace_id(query, workspace_id)
+        :error -> query
+      end
+
     query = apply_order(query, Map.get(params, "order_by"))
 
     query
+  end
+
+  defp filter_by_workspace_id(query, workspace_id) do
+    where(query, [t], t.workspace_id == ^workspace_id)
   end
 
   defp paginate(query, params) do

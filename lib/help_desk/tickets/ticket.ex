@@ -30,7 +30,7 @@ defmodule HelpDesk.Tickets.Ticket do
     :canceled
   ]
 
-  @required_params_create [:subject, :description, :tags, :priority]
+  @required_params_create [:subject, :description, :tags, :priority, :workspace_id]
   @required_params_update []
 
   schema "tickets" do
@@ -39,6 +39,8 @@ defmodule HelpDesk.Tickets.Ticket do
     field :status, Ecto.Enum, values: @ticket_status
     field :priority, Ecto.Enum, values: @priorities
     field :tags, {:array, Ecto.Enum}, values: @tags
+
+    belongs_to :workspace, HelpDesk.Workspaces.Workspace
 
     timestamps()
   end
