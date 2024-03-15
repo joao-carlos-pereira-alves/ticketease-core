@@ -27,6 +27,7 @@ defmodule HelpDeskWeb.TicketsJSON do
       status: ticket.status,
       priority: ticket.priority,
       tags: ticket.tags,
+      answer_description: ticket.answer_description,
       created_at: ticket.inserted_at
     }
   end

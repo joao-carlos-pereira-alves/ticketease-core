@@ -31,11 +31,12 @@ defmodule HelpDesk.Tickets.Ticket do
   ]
 
   @required_params_create [:subject, :description, :tags, :priority, :workspace_id]
-  @required_params_update []
+  @required_params_update [:status, :answer_description]
 
   schema "tickets" do
     field :subject, :string
     field :description, :string
+    field :answer_description, :string
     field :status, Ecto.Enum, values: @ticket_status
     field :priority, Ecto.Enum, values: @priorities
     field :tags, {:array, Ecto.Enum}, values: @tags
@@ -53,8 +54,8 @@ defmodule HelpDesk.Tickets.Ticket do
 
   def changeset(ticket, params) do
     ticket
-    |> cast(params, @required_params_create)
-    |> do_validations(@required_params_update)
+    |> cast(params, @required_params_update)
+    # |> do_validations(@required_params_update)
   end
 
   defp do_validations(changeset, fields) do
