@@ -8,6 +8,7 @@ defmodule HelpDesk.Users.User do
   import Ecto.Changeset
 
   require Logger
+
   alias HelpDesk.Mailers.User
   alias HelpDesk.Mailer
 

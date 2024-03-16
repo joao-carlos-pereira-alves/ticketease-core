@@ -7,6 +7,9 @@ defmodule HelpDesk.Tickets.Ticket do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias HelpDesk.Mailers.Ticket
+  alias HelpDesk.Mailer
+
   @priorities [:low, :medium, :high]
   @tags [
     :urgent,
@@ -56,6 +59,16 @@ defmodule HelpDesk.Tickets.Ticket do
     ticket
     |> cast(params, @required_params_update)
     # |> do_validations(@required_params_update)
+  end
+
+  def send_created_ticket_email(ticket) do
+    Ticket.created(ticket)
+    |> Mailer.deliver_later()
+  end
+
+  def send_updated_ticket_email(ticket, old_status) do
+    Ticket.updated(ticket, old_status)
+    |> Mailer.deliver_later()
   end
 
   defp do_validations(changeset, fields) do

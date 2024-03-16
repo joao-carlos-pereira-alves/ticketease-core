@@ -10,10 +10,15 @@ defmodule HelpDesk.Tickets.Create do
   end
 
   defp handle_insert_result({:ok, ticket}) do
+    send_created_ticket_email(ticket)
     {:ok, ticket}
   end
 
   defp handle_insert_result({:error, changeset}) do
     {:error, changeset}
+  end
+
+  defp send_created_ticket_email(ticket) do
+    Ticket.send_created_ticket_email(ticket)
   end
 end
