@@ -16,10 +16,20 @@ defmodule HelpDesk.Users.Create do
   end
 
   defp handle_insert_result({:error, changeset}) do
-    {:error, changeset}
+    case get_unique_email_error(changeset) do
+      true ->
+        {:error, %{ status: :unprocessable_entity, message: "O e-mail já está em uso." }}
+      false ->
+        {:error, changeset}
+    end
   end
 
   defp send_confirmation_email(user) do
     User.send_confirmation_email(user)
+  end
+
+  defp get_unique_email_error(changeset) do
+    errors = Tuple.to_list(changeset.errors[:email])
+    "has already been taken" in errors
   end
 end

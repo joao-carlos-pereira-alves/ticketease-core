@@ -21,7 +21,7 @@ defmodule HelpDesk.Users.User do
     field :password_hash, :string
     field :email, :string
 
-    has_many :workspace_users, HelpDesk.WorkspaceUsers.WorkspaceUser
+    has_many :workspace_users, HelpDesk.WorkspaceUsers.WorkspaceUser, on_delete: :delete_all
 
     timestamps()
   end
@@ -51,9 +51,10 @@ defmodule HelpDesk.Users.User do
     changeset
     |> validate_required(fields)
     |> unique_constraint(:email)
+    |> validate_format(:email, ~r/@/)
     |> validate_length(:name, min: 3)
     |> validate_length(:name, max: 50)
-    |> validate_format(:email, ~r/@/)
+    |> validate_length(:password, min: 6)
   end
 
   defp add_password_hash(%Ecto.Changeset{valid?: true, changes: %{password: password}} = changeset) do

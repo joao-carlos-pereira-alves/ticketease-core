@@ -3,7 +3,7 @@ defmodule HelpDesk.Repo.Migrations.AddWorkspaceReferencesToUsers do
 
   def change do
     alter table("users") do
-      add :workspace_id, references(:workspaces), null: true
+      add :workspace_id, references(:workspaces, on_delete: :delete_all), null: true
     end
   end
 end

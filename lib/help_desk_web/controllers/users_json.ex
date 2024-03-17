@@ -3,7 +3,7 @@ defmodule HelpDeskWeb.UsersJSON do
 
   def create(%{user: user}) do
     %{
-      message: "User criado com sucesso.",
+      message: "Usuário criado com sucesso.",
       data: data(user)
     }
   end
