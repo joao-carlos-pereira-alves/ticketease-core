@@ -22,10 +22,15 @@ defmodule HelpDeskWeb.UsersJSON do
 
   def update(%{user: user}), do: %{ message: "Usuário atualizado com sucesso.", data: data(user) }
 
+  def verify_account(%{user: user}), do: %{ message: "Conta verificada com sucesso!", data: data(user) }
+
+  def resend_verification_mailer(%{user: user}), do: %{ message: "Confirmação de e-mail enviado com sucesso!", data: data(user) }
+
   defp data(%User{} = user) do
     %{
       id: user.id,
-      name: user.name
+      name: user.name,
+      verified: user.verified || false
     }
   end
 end

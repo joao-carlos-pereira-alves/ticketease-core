@@ -57,4 +57,26 @@ defmodule HelpDeskWeb.UsersController do
       |> render(:update, user: user)
     end
   end
+
+  def verify_account(conn, params) do
+    %{ user_id: user_id } = conn.assigns
+    totp_token = params["totp_token"]
+    verify_params = %{ "id" => user_id, "totp_token" => totp_token}
+
+    with {:ok, %User{} = user} <- Users.validation_account(verify_params) do
+      conn
+      |> put_status(:ok)
+      |> render(:verify_account, user: user)
+    end
+  end
+
+  def resend_verification_code(conn, _) do
+    %{ user_id: user_id } = conn.assigns
+
+    with {:ok, %User{} = user} <- Users.resend_verification_account_code(%{ "id" => user_id}) do
+      conn
+      |> put_status(:ok)
+      |> render(:resend_verification_mailer, user: user)
+    end
+  end
 end

@@ -1,5 +1,6 @@
 defmodule HelpDesk.Users.Create do
   require Logger
+
   alias HelpDesk.Users.User
   alias HelpDesk.Repo
 

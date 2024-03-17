@@ -25,6 +25,8 @@ defmodule HelpDeskWeb.Router do
     resources "/workspace_users", WorkspaceUsersController, only: [:create, :show, :index]
 
     get "/show_current_user", UsersController, :show_current_user
+    post "/verify_account", UsersController, :verify_account
+    post "/resend_verification_code", UsersController, :resend_verification_code
   end
 
   # Enable LiveDashboard in development

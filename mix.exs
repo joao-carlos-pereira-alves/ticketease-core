@@ -51,7 +51,8 @@ defmodule HelpDesk.MixProject do
       {:bamboo, "~> 1.5"},
       {:guardian, "~> 2.0"},
       {:ex_doc, "~> 0.24", only: :dev, runtime: false},
-      {:corsica, "~> 1.0"}
+      {:corsica, "~> 1.0"},
+      {:nimble_totp, "~> 1.0"}
     ]
   end
 
