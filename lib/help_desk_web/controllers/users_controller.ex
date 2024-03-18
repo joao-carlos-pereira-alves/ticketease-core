@@ -9,9 +9,10 @@ defmodule HelpDeskWeb.UsersController do
 
   def create(conn, params) do
     with {:ok, %User{} = user} <- Users.create(params) do
+      token = Token.sign(user)
       conn
       |> put_status(:created)
-      |> render(:create, user: user)
+      |> render(:create, user: user, token: token)
     end
   end
 

@@ -1,9 +1,10 @@
 defmodule HelpDeskWeb.UsersJSON do
   alias HelpDesk.Users.User
 
-  def create(%{user: user}) do
+  def create(%{user: user, token: token}) do
     %{
       message: "Usuário criado com sucesso.",
+      token: token,
       data: data(user)
     }
   end
