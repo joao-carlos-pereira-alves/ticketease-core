@@ -25,6 +25,7 @@ defmodule HelpDesk.Users.User do
     field :totp_secret, :string
     field :totp_token, :string
 
+    has_many :responsible_workspaces, HelpDesk.Workspaces.Workspace
     has_many :workspace_users, HelpDesk.WorkspaceUsers.WorkspaceUser, on_delete: :delete_all
 
     timestamps()

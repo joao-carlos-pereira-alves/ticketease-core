@@ -2,9 +2,9 @@ defmodule HelpDesk.Workspaces.Create do
   alias HelpDesk.Workspaces.Workspace
   alias HelpDesk.Repo
 
-  def call(params) do
+  def call(params, user_id) do
     params
-    |> Workspace.changeset()
+    |> Workspace.changeset(user_id)
     |> Repo.insert()
     |> handle_insert_result()
   end

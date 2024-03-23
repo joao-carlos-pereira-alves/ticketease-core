@@ -26,7 +26,7 @@ defmodule HelpDesk.Workspaces.Workspace do
     :archived
   ]
 
-  @required_params_create [:title, :responsible_email, :description]
+  @required_params_create [:title, :description, :responsible_id]
   @required_params_update []
 
   schema "workspaces" do
@@ -35,15 +35,17 @@ defmodule HelpDesk.Workspaces.Workspace do
     field :responsible_email, :string
     field :status, Ecto.Enum, values: @workspace_status
 
+    belongs_to :responsible, HelpDesk.Users.User
     has_many :workspace_users, HelpDesk.WorkspaceUsers.WorkspaceUser
     has_many :tickets, HelpDesk.Tickets.Ticket
 
     timestamps()
   end
 
-  def changeset(params) do
+  def changeset(params, user_id) do
     %__MODULE__{}
     |> cast(params, @required_params_create)
+    |> add_responsible_id(user_id)
     |> do_validations(@required_params_create)
   end
 
@@ -58,6 +60,9 @@ defmodule HelpDesk.Workspaces.Workspace do
     |> validate_required(fields)
     |> validate_length(:title, min: 2)
     |> validate_length(:title, max: 255)
-    |> validate_format(:responsible_email, ~r/@/)
+  end
+
+  defp add_responsible_id(%Ecto.Changeset{valid?: true} = changeset, responsible_id) do
+    change(changeset, responsible_id: responsible_id)
   end
 end

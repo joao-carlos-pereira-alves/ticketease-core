@@ -7,7 +7,9 @@ defmodule HelpDeskWeb.WorkspacesController do
   action_fallback HelpDeskWeb.FallbackController
 
   def create(conn, params) do
-    with {:ok, %Workspace{} = workspace} <- Workspaces.create(params) do
+    %{ user_id: user_id } = conn.assigns
+
+    with {:ok, %Workspace{} = workspace} <- Workspaces.create(params, user_id) do
       conn
       |> put_status(:created)
       |> render(:create, workspace: workspace)
@@ -19,6 +21,16 @@ defmodule HelpDeskWeb.WorkspacesController do
       conn
       |> put_status(:ok)
       |> render(:delete, workspace: workspace)
+    end
+  end
+
+  def index(conn, _) do
+    %{ user_id: user_id } = conn.assigns
+
+    with {:ok, workspaces, pagination, offset } <- Workspaces.get_all(user_id, conn.params) do
+      conn
+      |> put_status(:ok)
+      |> render(:get, workspaces: workspaces, pagination: pagination, offset: offset)
     end
   end
 

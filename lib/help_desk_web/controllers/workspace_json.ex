@@ -10,9 +10,15 @@ defmodule HelpDeskWeb.WorkspacesJSON do
 
   def delete(%{workspace: workspace}), do: %{ message: "Área de trabalho excluída com sucesso.", data: data(workspace) }
 
+  def get(%{workspaces: workspaces, pagination: pagination, offset: offset}), do: %{ data: data(workspaces), pagination: pagination(offset, pagination)  }
+
   def get(%{workspace: workspace}), do: %{ data: data(workspace) }
 
   def update(%{workspace: workspace}), do: %{ message: "Área de trabalho atualizada com sucesso.", data: data(workspace) }
+
+  defp data(workspaces) when is_list(workspaces) do
+    Enum.map(workspaces, &data/1)
+  end
 
   defp data(%Workspace{} = workspace) do
     %{
@@ -20,6 +26,14 @@ defmodule HelpDeskWeb.WorkspacesJSON do
       title: workspace.title,
       description: workspace.description,
       status: workspace.status
+    }
+  end
+
+  defp pagination(offset, pagination) do
+    %{
+      total: offset,
+      per_page: pagination["per_page"],
+      page: pagination["page"]
     }
   end
 end

@@ -1,6 +1,4 @@
 defmodule HelpDeskWeb.WorkspaceUsersJSON do
-  import Ecto.Query
-
   alias HelpDesk.WorkspaceUsers.WorkspaceUser
 
   def create(%{workspace_user: workspace_user}) do
@@ -25,6 +23,12 @@ defmodule HelpDeskWeb.WorkspaceUsersJSON do
         id: workspace.id,
         title: workspace.title
       }
+    }
+  end
+
+  defp data(%WorkspaceUser{} = workspace_user) do
+    %{
+      id: workspace_user.id,
     }
   end
 end

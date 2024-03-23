@@ -11,8 +11,9 @@ defmodule HelpDesk.Mailers.Ticket do
 
   def created(ticket) do
     workspace = get_workspace(ticket)
+    responsible = get_responsible(workspace)
     html_body = created_email_body(ticket, workspace)
-    email = workspace.responsible_email
+    email = responsible.email
     subject = ticket.subject
 
     # Build your default email then customize for welcome
@@ -26,10 +27,11 @@ defmodule HelpDesk.Mailers.Ticket do
 
   def updated(ticket, old_status) do
     workspace = get_workspace(ticket)
+    responsible = get_responsible(workspace)
     new_status = translate_ticket_status(ticket.status)
     old_status = translate_ticket_status(old_status)
     html_body = updated_email_body(ticket, workspace, old_status)
-    email = workspace.responsible_email
+    email = responsible.email
 
     description_mailer =
       if old_status === new_status,
@@ -61,7 +63,7 @@ defmodule HelpDesk.Mailers.Ticket do
     status = translate_ticket_status(ticket.status)
 
     "<h2>Novo Chamado Criado</h2>
-    <p><strong>Título:</strong> #{ticket.title}</p>
+    <p><strong>Título:</strong> #{ticket.subject}</p>
     <p><strong>Descrição:</strong> #{ticket.description}</p>
     <p><strong>Área de Trabalho:</strong> #{workspace.title}</p>
     <p><strong>Prioridade:</strong> #{priority}</p>
@@ -91,6 +93,11 @@ defmodule HelpDesk.Mailers.Ticket do
       |> Repo.all()
 
     workspace
+  end
+
+  defp get_responsible(workspace) do
+    workspace = Repo.preload(workspace, :responsible)
+    workspace.responsible
   end
 
   defp translate_priority(priority) do
