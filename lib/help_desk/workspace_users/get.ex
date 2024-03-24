@@ -4,7 +4,6 @@ defmodule HelpDesk.WorkspaceUsers.Get do
   alias HelpDesk.WorkspaceUsers.WorkspaceUser
   alias HelpDesk.Repo
 
-
   def call(id) do
     case Repo.get(WorkspaceUser, id) do
       nil -> { :error, :not_found}
@@ -13,8 +12,8 @@ defmodule HelpDesk.WorkspaceUsers.Get do
   end
 
   def get_all(current_user_id) do
-    query = from w in WorkspaceUser,
-          where: w.user_id == ^current_user_id,
+    query = from uw in WorkspaceUser,
+          where: uw.user_id == ^current_user_id,
           preload: :workspace
 
     case Repo.all(query) do
