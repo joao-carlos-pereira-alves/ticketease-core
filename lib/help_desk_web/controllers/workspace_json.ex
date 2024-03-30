@@ -8,6 +8,13 @@ defmodule HelpDeskWeb.WorkspacesJSON do
     }
   end
 
+  def login(%{token: token}) do
+    %{
+      token: token,
+      token_type: "Bearer"
+    }
+  end
+
   def delete(%{workspace: workspace}), do: %{ message: "Área de trabalho excluída com sucesso.", data: data(workspace) }
 
   def get(%{workspaces: workspaces, pagination: pagination, offset: offset}), do: %{ data: data(workspaces), pagination: pagination(offset, pagination)  }
@@ -25,7 +32,8 @@ defmodule HelpDeskWeb.WorkspacesJSON do
       id: workspace.id,
       title: workspace.title,
       description: workspace.description,
-      status: workspace.status
+      status: workspace.status,
+      base64: workspace.base64
     }
   end
 

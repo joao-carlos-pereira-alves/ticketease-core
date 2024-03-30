@@ -15,6 +15,10 @@ defmodule HelpDeskWeb.Token do
     Token.sign(Endpoint, @sign_salt, %{user_id: user.id})
   end
 
+  def sign_api(workspace) do
+    Token.sign(Endpoint, @sign_salt, %{workspace_id: workspace.id})
+  end
+
   def verify(token) do
     case Token.verify(Endpoint, @sign_salt, token) do
       {:ok, _data} = result -> result

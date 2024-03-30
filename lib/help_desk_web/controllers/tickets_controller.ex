@@ -7,7 +7,15 @@ defmodule HelpDeskWeb.TicketsController do
   action_fallback HelpDeskWeb.FallbackController
 
   def create(conn, params) do
-    with {:ok, %Ticket{} = ticket} <- Tickets.create(params) do
+    params_with_workspace_id =
+      if Map.has_key?(conn.assigns, :workspace_id) do
+        %{workspace_id: workspace_id} = conn.assigns
+        Map.put(params, "workspace_id", workspace_id)
+      else
+        params
+      end
+
+    with {:ok, %Ticket{} = ticket} <- Tickets.create(params_with_workspace_id) do
       conn
       |> put_status(:created)
       |> render(:create, ticket: ticket)

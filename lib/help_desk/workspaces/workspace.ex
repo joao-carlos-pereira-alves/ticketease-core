@@ -26,7 +26,7 @@ defmodule HelpDesk.Workspaces.Workspace do
     :archived
   ]
 
-  @required_params_create [:title, :description, :responsible_id]
+  @required_params_create [:title, :description, :responsible_id, :base64]
   @required_params_update []
 
   schema "workspaces" do
@@ -34,6 +34,7 @@ defmodule HelpDesk.Workspaces.Workspace do
     field :description, :string
     field :responsible_email, :string
     field :status, Ecto.Enum, values: @workspace_status
+    field :base64, :string
 
     belongs_to :responsible, HelpDesk.Users.User
     has_many :workspace_users, HelpDesk.WorkspaceUsers.WorkspaceUser
@@ -46,6 +47,7 @@ defmodule HelpDesk.Workspaces.Workspace do
     %__MODULE__{}
     |> cast(params, @required_params_create)
     |> add_responsible_id(user_id)
+    |> add_base64_token()
     |> do_validations(@required_params_create)
   end
 
@@ -64,5 +66,15 @@ defmodule HelpDesk.Workspaces.Workspace do
 
   defp add_responsible_id(%Ecto.Changeset{valid?: true} = changeset, responsible_id) do
     change(changeset, responsible_id: responsible_id)
+  end
+
+  defp add_base64_token(%Ecto.Changeset{valid?: true} = changeset) do
+    base64_token = generate_base64_token()
+    change(changeset, base64: base64_token)
+  end
+
+  def generate_base64_token do
+    random_bytes = :crypto.strong_rand_bytes(32)
+    Base.encode64(random_bytes)
   end
 end

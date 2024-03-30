@@ -3,6 +3,7 @@ defmodule HelpDeskWeb.WorkspacesController do
 
   alias HelpDesk.Workspaces
   alias Workspaces.Workspace
+  alias HelpDeskWeb.Token
 
   action_fallback HelpDeskWeb.FallbackController
 
@@ -13,6 +14,15 @@ defmodule HelpDeskWeb.WorkspacesController do
       conn
       |> put_status(:created)
       |> render(:create, workspace: workspace)
+    end
+  end
+
+  def login(conn, params) do
+    with {:ok, %Workspace{} = workspace} <- Workspaces.login(params) do
+      token = Token.sign_api(workspace)
+      conn
+      |> put_status(:ok)
+      |> render(:login, token: token)
     end
   end
 
@@ -49,4 +59,14 @@ defmodule HelpDeskWeb.WorkspacesController do
       |> render(:update, workspace: workspace)
     end
   end
+
+  # def get_token(conn, _params) do
+  #   user = Worksoaces.get(1)
+  #   {:ok, jwt, _full_claims} = Guardian.encode_and_sign(user)
+
+  #   dbg(jwt)
+  #   conn
+  #   |> put_resp_content_type("application/json")
+  #   |> send_resp(200, Jason.encode!(%{token: jwt}))
+  # end
 end

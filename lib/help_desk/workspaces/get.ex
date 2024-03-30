@@ -12,6 +12,13 @@ defmodule HelpDesk.Workspaces.Get do
     end
   end
 
+  def get_by_base64(%{"base64" => base64}) do
+    case Repo.get_by(Workspace, base64: base64) do
+      nil -> { :error, %{ status: :not_found, message: "Área de trabalho não encontrada." }}
+      workspace -> { :ok, workspace}
+    end
+  end
+
   def get_all(user_id, params) do
     query = from w in Workspace,
               where: w.responsible_id == ^user_id or
