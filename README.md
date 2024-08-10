@@ -27,7 +27,7 @@
 Clone o repositório:
 
 ```
-git clone https://github.com/joao-carlos-pereira-alves/Help-Desk-Backend
+git clone https://github.com/joao-carlos-pereira-alves/ticketease-core
 ```
 
 Entre no diretório:
