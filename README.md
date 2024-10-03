@@ -13,8 +13,8 @@
 ## 🛠️ Tecnologias Utilizadas
 
 ### Backend
-- **Linguagem:** Ruby
-- **Framework:** Ruby On Rails
+- **Linguagem:** Elixir
+- **Framework:** Phoenix
 - **Banco de Dados:** PostgreSQL
 
 ### Frontend
