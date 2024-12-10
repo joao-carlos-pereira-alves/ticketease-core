@@ -1,5 +1,7 @@
 defmodule HelpDeskWeb.UsersControllerTest do
   use HelpDeskWeb.ConnCase
+  use ExUnit.Case
+  use Bamboo.Test, shared: :true
 
   alias HelpDesk.Users
   alias Users.User
@@ -30,7 +32,7 @@ defmodule HelpDeskWeb.UsersControllerTest do
         |> json_response(:created)
 
       assert %{
-               "data" => %{"email" => "teste@gmail.com", "id" => _id, "name" => "João"},
+               "data" => %{"id" => _id, "name" => "João"},
                "message" => "User criado com sucesso."
              } = response
     end
@@ -102,7 +104,76 @@ defmodule HelpDeskWeb.UsersControllerTest do
 
       assert response == expected_response
     end
+
+    # test "after registering, the user gets a welcome email" do
+    #   user = build_new_user()
+    #   expected_email = HelpDesk.Mailers.User.welcome_email(user)
+
+    #   Users.create(user)
+
+    #   assert_delivered_email expected_email
+    # end
+
+    test "welcome email" do
+      user = build_new_user()
+
+      email = HelpDesk.Mailers.User.welcome_email(user)
+
+      assert email.to == user.email
+      assert email.from == "hello@example.com"
+      assert email.html_body == welcome_user_email_body(user)
+      assert email.text_body =~ "Aproveite para conhecer nosso sistema"
+    end
+
+    def welcome_user_email_body(user) do
+      "<p>Seja Bem vindo <strong> #{user.name} </strong> ao HelpDesk!</p>"
+    end
+
+    defp build_new_user do
+      %{name: "João", email: "welcome@myapp.com", password: "password123"}
+    end
   end
+
+  # describe "update/2" do
+  #   setup [:create_user]
+  #   setup [:create_workspace]
+
+  #   test "success adding relationship to workspace", %{conn: conn, user: user, workspace: workspace} do
+  #     response =
+  #       conn
+  #       |> patch(~p"/api/v1/users/#{user.id}", %{ workspace_id: workspace.id })
+  #       |> json_response(:ok)
+
+  #     assert %{
+  #              "data" => %{"id" => _id},
+  #              "message" => "Usuário atualizado com sucesso."
+  #            } = response
+  #   end
+
+  #   defp create_user(_) do
+  #     ticket_params = %{
+  #       subject: "Lorem Ipsum",
+  #       description: "Lorem Ipsum",
+  #       priority: "medium",
+  #       tags: [:urgent, :critical, :deadline]
+  #     }
+
+  #     {:ok, ticket} = HelpDesk.Tickets.create(ticket_params)
+
+  #     %{ticket: ticket}
+  #   end
+
+  #   defp create_workspace(_) do
+  #     workspace_params = %{
+  #       title: "Lorem Ipsum",
+  #       responsible_email: "hello@example.com"
+  #     }
+
+  #     {:ok, workspace} = HelpDesk.Workspaces.create(workspace_params)
+
+  #     %{workspace: workspace}
+  #   end
+  # end
 
   describe "login/2" do
     test "successfully sign in an user", %{conn: conn} do

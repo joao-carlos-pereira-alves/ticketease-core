@@ -1,5 +1,9 @@
 import Config
 
+config :help_desk, HelpDesk.Plugs.Guardian,
+  issuer: "help_desk",
+  secret_key: "oJyVw1SFPJMRM/V6Q5BCTqq2k14HQdwqc9B8KCU2K4j2WDEixYwbe78ICzrqKa/8"
+
 # Configure your database
 config :help_desk, HelpDesk.Repo,
   username: "postgres",
@@ -61,3 +65,13 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :help_desk, HelpDesk.Mailer,
+  adapter: Bamboo.LocalAdapter,
+  server: "smtp.domain",
+  port: 1025,
+  username: System.get_env("SMTP_USERNAME"),
+  password: System.get_env("SMTP_PASSWORD"),
+  tls: :if_available, # can be `:always` or `:never`
+  ssl: false, # can be `true`
+  retries: 1

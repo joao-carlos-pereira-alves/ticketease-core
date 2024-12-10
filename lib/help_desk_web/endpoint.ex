@@ -1,6 +1,12 @@
 defmodule HelpDeskWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :help_desk
 
+  plug Corsica,
+    origins: ["http://localhost:8080"],
+    log: [rejected: :error, invalid: :warn, accepted: :debug],
+    allow_headers: ["content-type", "authorization"],
+    allow_credentials: true
+
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
@@ -12,6 +18,10 @@ defmodule HelpDeskWeb.Endpoint do
   ]
 
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
+
+  socket "/ticket", HelpDeskWeb.UserSocket,
+                    websocket: true,
+                    longpoll: false
 
   # Serve at "/" the static files from "priv/static" directory.
   #

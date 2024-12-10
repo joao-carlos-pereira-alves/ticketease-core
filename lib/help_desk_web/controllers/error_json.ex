@@ -20,6 +20,13 @@ defmodule HelpDeskWeb.ErrorJSON do
     }
   end
 
+  def error(%{status: :unprocessable_entity, message: error_message}) do
+    %{
+      status: :unprocessable_entity,
+      message: error_message
+    }
+  end
+
   def error(%{status: :not_found, message: error_message}) do
     %{
       status: :not_found,
