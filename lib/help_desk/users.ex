@@ -10,4 +10,6 @@ defmodule HelpDesk.Users do
   defdelegate get(id), to: Get, as: :call
   defdelegate update(params), to: Update, as: :call
   defdelegate login(params), to: Verify, as: :call
+  defdelegate validation_account(params), to: Verify, as: :call
+  defdelegate resend_verification_account_code(params), to: Verify, as: :resend_verification_account_mailer
 end

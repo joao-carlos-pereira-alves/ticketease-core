@@ -8,7 +8,12 @@ defmodule HelpDeskWeb.Plugs.Auth do
   def call(conn, _opts) do
     with ["Bearer " <> token] <- get_req_header(conn, "authorization"),
          {:ok, data} <- Token.verify(token) do
-      assign(conn, :user_id, data.user_id)
+      case Map.get(data, :user_id) do
+        nil ->
+          assign(conn, :workspace_id, data.workspace_id)
+        user_id ->
+          assign(conn, :user_id, user_id)
+      end
     else
       _error ->
         conn

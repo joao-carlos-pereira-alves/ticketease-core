@@ -12,7 +12,7 @@ config :help_desk,
   generators: [timestamp_type: :utc_datetime]
 
 # I18n config
-config :reserva_online, ReservaOnline.Gettext, default_locale: "pt_BR", locales: ~w(pt_BR en)
+config :help_desk, HelpDesk.Gettext, default_locale: "pt_BR", locales: ~w(pt_BR en)
 
 # Configures the endpoint
 config :help_desk, HelpDeskWeb.Endpoint,
@@ -32,6 +32,11 @@ config :logger, :console,
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
+
+config :help_desk, HelpDesk.Guardian,
+       issuer: "help_desk",
+       secret_key: "cO7dtNIzHNh0xfVsWxy1ONnrEuc5U8kT9gCj6/1lgJrdzWgOxmQLYWQgx368FoBp",
+       serializer: HelpDesk.GuardianSerializer
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
